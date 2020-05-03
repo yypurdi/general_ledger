@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="writeProductMapper">			
+	
+	<update id="writeProduct">
+		update product set id = #{id},
+		code = #{code},
+		parent = #{parent},
+		name = #{name},
+		description = #{description},
+		discount_category = #{discountCategory},
+		tax_id = #{taxId},
+		serialised = #{serialised} where id = #{id};
+	</update>
+
+</mapper>

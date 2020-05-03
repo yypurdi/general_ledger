@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchGeneralLedgerMapper">			
+	
+	<select id="countGeneralLedgerSearch">
+		select count(*) from general_ledger
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				and id like #{id}
+			</if>
+			<if test="accCode!=null">
+				and acc_code like #{accCode}
+			</if>
+			<if test="createDate!=null">
+				and create_date like #{createDate}
+			</if>
+			<if test="description!=null">
+				and description like #{description}
+			</if>
+			<if test="debit!=null">
+				and debit like #{debit}
+			</if>
+			<if test="credit!=null">
+				and credit like #{credit}
+			</if>
+			<if test="posted!=null">
+				and posted like #{posted}
+			</if>
+			<if test="source!=null">
+				and source like #{source}
+			</if>
+		</where>		
+	</select>
+
+	<select id="searchGeneralLedger">
+		select * from general_ledger  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				id like #{id}
+			</if>
+			<if test="accCode!=null">
+				acc_code like #{accCode}
+			</if>
+			<if test="createDate!=null">
+				create_date like #{createDate}
+			</if>
+			<if test="description!=null">
+				description like #{description}
+			</if>
+			<if test="debit!=null">
+				debit like #{debit}
+			</if>
+			<if test="credit!=null">
+				credit like #{credit}
+			</if>
+			<if test="posted!=null">
+				posted like #{posted}
+			</if>
+			<if test="source!=null">
+				source like #{source}
+			</if>
+		</where> limit 100 offset ${rowid}
+	</select>
+
+</mapper>

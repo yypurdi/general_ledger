@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="newAccountMasterMapper">			
+	
+	<insert id="newAccountMaster">
+		insert into account_master(id,acc_code,acc_name,acc_description,acc_group_id) 
+		values (#{id},#{accCode},#{accName},#{accDescription},#{accGroupId});
+	</insert>
+
+</mapper>

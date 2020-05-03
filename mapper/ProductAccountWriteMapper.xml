@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="writeProductAccountMapper">			
+	
+	<update id="writeProductAccount">
+		update product_account set id = #{id},
+		code = #{code},
+		name = #{name},
+		description = #{description},
+		type = #{type},
+		acc_stock = #{accStock},
+		acc_adjgl = #{accAdjgl},
+		acc_purchase = #{accPurchase},
+		acc_material = #{accMaterial},
+		acc_wip = #{accWip} where id = #{id};
+	</update>
+
+</mapper>

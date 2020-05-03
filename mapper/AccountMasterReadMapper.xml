@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="readAccountMasterMapper">			
+	
+	<select id="readAccountMaster">
+		select * from account_master where id = #{id};
+	</select>
+
+	<select id="generalLedger_MKKZ2">         
+		select * from general_ledger where id = #{id};
+	</select>
+  
+	<select id="productAccount_GLG5C">         
+		select * from product_account where id = #{id};
+	</select>
+  
+</mapper>

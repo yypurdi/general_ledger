@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="readAppUsersMapper">			
+	
+	<select id="readAppUsers">
+		select * from app_users where username = #{username};
+	</select>
+
+	<select id="appAuthorities_PDZF9">         
+		select * from app_authorities where username = #{username};
+	</select>
+  
+	<select id="appContact_SA4WR">         
+		select * from app_contact where username = #{username};
+	</select>
+  
+	<select id="appGroupMembers_B6WDR">         
+		select * from app_group_members where username = #{username};
+	</select>
+  
+	<select id="appMessage_P8UA1">         
+		select * from app_message where username = #{username};
+	</select>
+  
+	<select id="appPersistentLogins_LFS2D">         
+		select * from app_persistent_logins where username = #{username};
+	</select>
+  
+	<select id="appRoom_WOBND">         
+		select * from app_room where username = #{username};
+	</select>
+  
+</mapper>

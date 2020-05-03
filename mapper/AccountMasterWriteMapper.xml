@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="writeAccountMasterMapper">			
+	
+	<update id="writeAccountMaster">
+		update account_master set id = #{id},
+		acc_code = #{accCode},
+		acc_name = #{accName},
+		acc_description = #{accDescription},
+		acc_group_id = #{accGroupId} where id = #{id};
+	</update>
+
+</mapper>

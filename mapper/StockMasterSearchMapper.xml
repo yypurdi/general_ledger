@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchStockMasterMapper">			
+	
+	<select id="countStockMasterSearch">
+		select count(*) from stock_master
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				and id like #{id}
+			</if>
+			<if test="code!=null">
+				and code like #{code}
+			</if>
+			<if test="units!=null">
+				and units like #{units}
+			</if>
+			<if test="mbflag!=null">
+				and mbflag like #{mbflag}
+			</if>
+			<if test="lastcurcostdate!=null">
+				and lastcurcostdate like #{lastcurcostdate}
+			</if>
+			<if test="actualcost!=null">
+				and actualcost like #{actualcost}
+			</if>
+			<if test="lastcost!=null">
+				and lastcost like #{lastcost}
+			</if>
+			<if test="materialcost!=null">
+				and materialcost like #{materialcost}
+			</if>
+			<if test="labourcost!=null">
+				and labourcost like #{labourcost}
+			</if>
+			<if test="overheadcost!=null">
+				and overheadcost like #{overheadcost}
+			</if>
+			<if test="lowestlevel!=null">
+				and lowestlevel like #{lowestlevel}
+			</if>
+			<if test="discontinued!=null">
+				and discontinued like #{discontinued}
+			</if>
+			<if test="controlled!=null">
+				and controlled like #{controlled}
+			</if>
+			<if test="eoq!=null">
+				and eoq like #{eoq}
+			</if>
+			<if test="volume!=null">
+				and volume like #{volume}
+			</if>
+			<if test="kgs!=null">
+				and kgs like #{kgs}
+			</if>
+			<if test="barcode!=null">
+				and barcode like #{barcode}
+			</if>
+			<if test="discountcategory!=null">
+				and discountcategory like #{discountcategory}
+			</if>
+			<if test="taxcatid!=null">
+				and taxcatid like #{taxcatid}
+			</if>
+			<if test="serialised!=null">
+				and serialised like #{serialised}
+			</if>
+			<if test="appendfile!=null">
+				and appendfile like #{appendfile}
+			</if>
+			<if test="perishable!=null">
+				and perishable like #{perishable}
+			</if>
+			<if test="decimalplaces!=null">
+				and decimalplaces like #{decimalplaces}
+			</if>
+			<if test="nextserialno!=null">
+				and nextserialno like #{nextserialno}
+			</if>
+			<if test="pansize!=null">
+				and pansize like #{pansize}
+			</if>
+			<if test="shrinkfactor!=null">
+				and shrinkfactor like #{shrinkfactor}
+			</if>
+		</where>		
+	</select>
+
+	<select id="searchStockMaster">
+		select * from stock_master  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				id like #{id}
+			</if>
+			<if test="code!=null">
+				code like #{code}
+			</if>
+			<if test="units!=null">
+				units like #{units}
+			</if>
+			<if test="mbflag!=null">
+				mbflag like #{mbflag}
+			</if>
+			<if test="lastcurcostdate!=null">
+				lastcurcostdate like #{lastcurcostdate}
+			</if>
+			<if test="actualcost!=null">
+				actualcost like #{actualcost}
+			</if>
+			<if test="lastcost!=null">
+				lastcost like #{lastcost}
+			</if>
+			<if test="materialcost!=null">
+				materialcost like #{materialcost}
+			</if>
+			<if test="labourcost!=null">
+				labourcost like #{labourcost}
+			</if>
+			<if test="overheadcost!=null">
+				overheadcost like #{overheadcost}
+			</if>
+			<if test="lowestlevel!=null">
+				lowestlevel like #{lowestlevel}
+			</if>
+			<if test="discontinued!=null">
+				discontinued like #{discontinued}
+			</if>
+			<if test="controlled!=null">
+				controlled like #{controlled}
+			</if>
+			<if test="eoq!=null">
+				eoq like #{eoq}
+			</if>
+			<if test="volume!=null">
+				volume like #{volume}
+			</if>
+			<if test="kgs!=null">
+				kgs like #{kgs}
+			</if>
+			<if test="barcode!=null">
+				barcode like #{barcode}
+			</if>
+			<if test="discountcategory!=null">
+				discountcategory like #{discountcategory}
+			</if>
+			<if test="taxcatid!=null">
+				taxcatid like #{taxcatid}
+			</if>
+			<if test="serialised!=null">
+				serialised like #{serialised}
+			</if>
+			<if test="appendfile!=null">
+				appendfile like #{appendfile}
+			</if>
+			<if test="perishable!=null">
+				perishable like #{perishable}
+			</if>
+			<if test="decimalplaces!=null">
+				decimalplaces like #{decimalplaces}
+			</if>
+			<if test="nextserialno!=null">
+				nextserialno like #{nextserialno}
+			</if>
+			<if test="pansize!=null">
+				pansize like #{pansize}
+			</if>
+			<if test="shrinkfactor!=null">
+				shrinkfactor like #{shrinkfactor}
+			</if>
+		</where> limit 100 offset ${rowid}
+	</select>
+
+</mapper>

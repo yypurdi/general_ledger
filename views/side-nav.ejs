@@ -1,0 +1,67 @@
+<div id="menu_sidenav" class="sidenav">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <table>
+                <tr>
+                    <td><img src="images/logo.jpg" alt="" class="logo"></td>
+                    <td>
+						<% if(session.user_acl=='ROLE_ADMIN') { %>
+                        <p style="font-weight: bold">General Ledger</p>
+						<% } else { %>
+						<p style="font-weight: bold">General Ledger</p>
+						<% } %>
+                        <p style="font-size: 11px"><%=session.name%></p>
+                        <p style="font-size: 11px">Online</p>
+                    </td>
+                </tr>
+            </table>              
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="/"><span class="glyphicon glyphicon-dashboard" style="font-size: 18px;top:5px"></span>Dashboard</a>
+            </li>
+            <li>
+                <a href="/searchAccountMaster"><span class="glyphicon glyphicon-flag" style="font-size: 18px;top:5px"></span>Chart Of Account</a>
+            </li>
+            <li>
+                <a href="/searchGeneralLedger"><span class="glyphicon glyphicon-credit-card" style="font-size: 18px;top:5px"></span>General Ledger</a>
+            </li>
+            <li>
+                <a href="/searchProduct"><span class="glyphicon glyphicon-tags" style="font-size: 18px;top:5px"></span>Product</a>
+            </li>
+            <li>
+                <a href="/searchStockMaster"><span class="glyphicon glyphicon-globe" style="font-size: 18px;top:5px"></span>Inventory</a>
+            </li>			
+            <li>
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <span class="glyphicon glyphicon-calendar" style="font-size: 18px;top:5px"></span>Schedulers
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li><a href="#"><span class="glyphicon glyphicon-tasks"></span>Manage Scheduler</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-time"></span>Monitor Scheduler</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <span class="glyphicon glyphicon-stats" style="font-size: 18px;top:5px"></span>Reports</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li><a href="#"><span class="glyphicon glyphicon-transfer"></span>Traffic Report</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-usd"></span>Revenue Report</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a href="/searchAppContact" class="button_custom"><span class="glyphicon glyphicon-comment"></span>Chat</a>
+            </li>
+            <li>
+                <a href="/searchAppRoom" class="button_custom"><span class="glyphicon glyphicon-facetime-video"></span>Video Conference</a>
+            </li>
+            <li>
+				<a id="chatPanel" class="button_custom"><span class="glyphicon glyphicon-earphone"></span>Customer Line</a>
+            </li>    
+        </ul>
+    </nav>    
+</div>

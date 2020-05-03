@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<% include head %>
+</head>
+<body>
+<% include side-nav %>
+<div id="main">
+<% include header-nav %>
+<div class="container-fluid">
+<section id="main-content">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h4><%=resource.Heading%></h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="generalLedger-tab" data-toggle="tab" href="#generalLedger" role="tab" aria-controls="generalLedger" aria-selected="true"><h4><%=resource.GeneralLedger.Heading%></h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="productAccount-tab" data-toggle="tab" href="#productAccount" role="tab" aria-controls="productAccount" aria-selected="true"><h4><%=resource.ProductAccount.Heading%></h4></a>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade in active" id="home" role="tabpanel" aria-labelledby="home-tab">	
+            <div style="width:40%">
+            <form class="form-horizontal">
+                <table class="table table-striped">
+                    <tr class="heading-tr">
+                        <th> <%=resource.Heading%></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><%=resource.Id.label%></td>
+                        <td><%=record.id%></td>						
+                    </tr><tr>
+                        <td><%=resource.AccCode.label%></td>
+                        <td><%=record.acc_code%></td>						
+                    </tr><tr>
+                        <td><%=resource.AccName.label%></td>
+                        <td><%=record.acc_name%></td>						
+                    </tr><tr>
+                        <td><%=resource.AccDescription.label%></td>
+                        <td><%=record.acc_description%></td>						
+                    </tr><tr>
+                        <td><%=resource.AccGroupId.label%></td>
+                        <td><%=record.acc_group_id%></td>						
+                    </tr>
+                
+                </table>
+                <% if(session.user_acl=='ROLE_ADMIN') { %>
+                <button type="submit" class="btn btn-default"><a href="/writeAccountMaster?id=<%=record.id%>">Edit</a></button>
+                <button type="submit" class="btn btn-default"><a href="/deleteAccountMaster?id=<%=record.id%>">Delete</a></button>
+                <% } %>
+                <button type="button" class="btn btn-default" onclick="javascript:window.history.back()">Back</button>
+            </form>
+            </div>
+        </div>
+        
+	<div class="tab-pane fade" id="generalLedger" role="tabpanel" aria-labelledby="generalLedger-tab">
+            <div style="width:75%">
+            <table class="table table-striped">
+                <tr class="heading-tr">
+                    <th><%=resource.GeneralLedger.Id.header%></th>
+                    <th><%=resource.GeneralLedger.AccCode.header%></th>
+                    <th><%=resource.GeneralLedger.CreateDate.header%></th>
+                    <th><%=resource.GeneralLedger.Description.header%></th>
+                    <th><%=resource.GeneralLedger.Debit.header%></th>
+                    <th><%=resource.GeneralLedger.Credit.header%></th>
+                    <th><%=resource.GeneralLedger.Posted.header%></th>
+                    <th><%=resource.GeneralLedger.Source.header%></th>
+                                        
+                    <th>View</th>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <% } %>
+                </tr>
+                <% for(let i in record.generalLedger){ let rec = record.generalLedger[i] %>
+                <tr>
+                    <td><a><%=rec.id%></a></td>
+                    <td><a><%=rec.acc_code%></a></td>
+                    <td><a><%=dateFormat(rec.create_date,'mmm-dd-yyyy h:MM:ss TT')%></a></td>
+                    <td><a><%=rec.description%></a></td>
+                    <td><a><%=rec.debit%></a></td>
+                    <td><a><%=rec.credit%></a></td>
+                    <td><a><%=rec.posted%></a></td>
+                    <td><a><%=rec.source%></a></td>
+                    
+                    <td><a href="/readGeneralLedger?id=<%=rec.id%>"><span class="glyphicon glyphicon-open"></span></a></td>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <td><a href="/writeGeneralLedger?id=<%=rec.id%>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a href="/deleteGeneralLedger?id=<%=rec.id%>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <% } %>
+                </tr>
+                <% } %>
+            </table>        
+	    <button type="submit" class="btn btn-default"><a href="/newGeneralLedger">Add</a></button>
+	    <button type="submit" class="btn btn-default">Clear</button>
+	    </div>	    
+        </div>            
+        
+	<div class="tab-pane fade" id="productAccount" role="tabpanel" aria-labelledby="productAccount-tab">
+            <div style="width:75%">
+            <table class="table table-striped">
+                <tr class="heading-tr">
+                    <th><%=resource.ProductAccount.Id.header%></th>
+                    <th><%=resource.ProductAccount.Code.header%></th>
+                    <th><%=resource.ProductAccount.Name.header%></th>
+                    <th><%=resource.ProductAccount.Description.header%></th>
+                    <th><%=resource.ProductAccount.Type.header%></th>
+                    <th><%=resource.ProductAccount.AccStock.header%></th>
+                    <th><%=resource.ProductAccount.AccAdjgl.header%></th>
+                    <th><%=resource.ProductAccount.AccPurchase.header%></th>
+                    <th><%=resource.ProductAccount.AccMaterial.header%></th>
+                    <th><%=resource.ProductAccount.AccWip.header%></th>
+                                        
+                    <th>View</th>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <% } %>
+                </tr>
+                <% for(let i in record.productAccount){ let rec = record.productAccount[i] %>
+                <tr>
+                    <td><a><%=rec.id%></a></td>
+                    <td><a><%=rec.code%></a></td>
+                    <td><a><%=rec.name%></a></td>
+                    <td><a><%=rec.description%></a></td>
+                    <td><a><%=rec.type%></a></td>
+                    <td><a><%=rec.acc_stock%></a></td>
+                    <td><a><%=rec.acc_adjgl%></a></td>
+                    <td><a><%=rec.acc_purchase%></a></td>
+                    <td><a><%=rec.acc_material%></a></td>
+                    <td><a><%=rec.acc_wip%></a></td>
+                    
+                    <td><a href="/readProductAccount?id=<%=rec.id%>"><span class="glyphicon glyphicon-open"></span></a></td>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <td><a href="/writeProductAccount?id=<%=rec.id%>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a href="/deleteProductAccount?id=<%=rec.id%>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <% } %>
+                </tr>
+                <% } %>
+            </table>        
+	    <button type="submit" class="btn btn-default"><a href="/newProductAccount">Add</a></button>
+	    <button type="submit" class="btn btn-default">Clear</button>
+	    </div>	    
+        </div>            
+        
+    </div>
+
+</section>
+</div>
+</div>
+<% include footer %>
+</body>
+</html>

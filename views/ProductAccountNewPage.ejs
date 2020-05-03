@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<% include head %>
+</head>
+<body>
+<% include side-nav %>
+<div id="main">
+<% include header-nav %>
+<div class="container-fluid">
+<section id="main-content">
+
+    <div style="width:40%">
+    <h3><%=resource.Title%></h3>
+    <form class="form-horizontal" action="/newProductAccount" method="post">
+        <table class="table table-striped">
+            <tr class="heading-tr">
+                <th><%=resource.Heading%></th>
+                <th style="text-align:right"><%=statusMessage%></th>
+            </tr>
+            <tr>
+                <td><%=resource.Id.label%></td>
+                <td><input type="text" class="form-control" name="id" value="<%=record.id%>"/></td>
+            </tr><tr>
+                <td><%=resource.Code.label%></td>
+                <td><input type="text" class="form-control" name="code" value="<%=record.code%>"/></td>
+            </tr><tr>
+                <td><%=resource.Name.label%></td>
+                <td><input type="text" class="form-control" name="name" value="<%=record.name%>"/></td>
+            </tr><tr>
+                <td><%=resource.Description.label%></td>
+                <td><input type="text" class="form-control" name="description" value="<%=record.description%>"/></td>
+            </tr><tr>
+                <td><%=resource.Type.label%></td>
+                <td><input type="text" class="form-control" name="type" value="<%=record.type%>"/></td>
+            </tr><tr>
+                <td><%=resource.AccStock.label%></td>
+                <td><input type="text" class="form-control" name="accStock" value="<%=record.accStock%>"/></td>
+            </tr><tr>
+                <td><%=resource.AccAdjgl.label%></td>
+                <td><input type="text" class="form-control" name="accAdjgl" value="<%=record.accAdjgl%>"/></td>
+            </tr><tr>
+                <td><%=resource.AccPurchase.label%></td>
+                <td><input type="text" class="form-control" name="accPurchase" value="<%=record.accPurchase%>"/></td>
+            </tr><tr>
+                <td><%=resource.AccMaterial.label%></td>
+                <td><input type="text" class="form-control" name="accMaterial" value="<%=record.accMaterial%>"/></td>
+            </tr><tr>
+                <td><%=resource.AccWip.label%></td>
+                <td><input type="text" class="form-control" name="accWip" value="<%=record.accWip%>"/></td>
+            </tr>
+        
+        </table>
+        <button type="submit" class="btn btn-default">Add</button>
+        <% if(statusCode == 200) { %>
+        <button type="button" class="btn btn-default"><a href="/<%=session.previouspath%>">Back</a></button>
+        <% }else{ %>
+        <button type="button" class="btn btn-default" onclick="javascript:window.history.back()">Cancel</button>
+        <% } %>
+    </form>
+    </div>
+
+</section>
+</div>
+</div>
+<% include footer %>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<% include head %>
+</head>
+<body>
+<% include side-nav %>
+<div id="main">
+<% include header-nav %>
+<div class="container-fluid">
+<section id="main-content">
+
+    <div style="width:40%">
+    <h3><%=resource.Title%></h3>
+    <form class="form-horizontal" action="/writeStockMaster" method="post">
+        <table class="table table-striped">
+            <tr class="heading-tr">
+                <th><%=resource.Heading%></th>
+                <th style="text-align:right"><%=statusMessage%></th>
+            </tr>
+            <tr>
+                <td><%=resource.Id.label%></td>
+                <td><input type="text" class="form-control" name="id" value="<%=record.id%>"/></td>
+            </tr><tr>
+                <td><%=resource.Code.label%></td>
+                <td><input type="text" class="form-control" name="code" value="<%=record.code%>"/></td>
+            </tr><tr>
+                <td><%=resource.Units.label%></td>
+                <td><input type="text" class="form-control" name="units" value="<%=record.units%>"/></td>
+            </tr><tr>
+                <td><%=resource.Mbflag.label%></td>
+                <td><input type="text" class="form-control" name="mbflag" value="<%=record.mbflag%>"/></td>
+            </tr><tr>
+                <td><%=resource.Lastcurcostdate.label%></td>
+                <td><input type="text" class="form-control" name="lastcurcostdate" value="<%=record.lastcurcostdate%>"/></td>
+            </tr><tr>
+                <td><%=resource.Actualcost.label%></td>
+                <td><input type="text" class="form-control" name="actualcost" value="<%=record.actualcost%>"/></td>
+            </tr><tr>
+                <td><%=resource.Lastcost.label%></td>
+                <td><input type="text" class="form-control" name="lastcost" value="<%=record.lastcost%>"/></td>
+            </tr><tr>
+                <td><%=resource.Materialcost.label%></td>
+                <td><input type="text" class="form-control" name="materialcost" value="<%=record.materialcost%>"/></td>
+            </tr><tr>
+                <td><%=resource.Labourcost.label%></td>
+                <td><input type="text" class="form-control" name="labourcost" value="<%=record.labourcost%>"/></td>
+            </tr><tr>
+                <td><%=resource.Overheadcost.label%></td>
+                <td><input type="text" class="form-control" name="overheadcost" value="<%=record.overheadcost%>"/></td>
+            </tr><tr>
+                <td><%=resource.Lowestlevel.label%></td>
+                <td><input type="text" class="form-control" name="lowestlevel" value="<%=record.lowestlevel%>"/></td>
+            </tr><tr>
+                <td><%=resource.Discontinued.label%></td>
+                <td><input type="text" class="form-control" name="discontinued" value="<%=record.discontinued%>"/></td>
+            </tr><tr>
+                <td><%=resource.Controlled.label%></td>
+                <td><input type="text" class="form-control" name="controlled" value="<%=record.controlled%>"/></td>
+            </tr><tr>
+                <td><%=resource.Eoq.label%></td>
+                <td><input type="text" class="form-control" name="eoq" value="<%=record.eoq%>"/></td>
+            </tr><tr>
+                <td><%=resource.Volume.label%></td>
+                <td><input type="text" class="form-control" name="volume" value="<%=record.volume%>"/></td>
+            </tr><tr>
+                <td><%=resource.Kgs.label%></td>
+                <td><input type="text" class="form-control" name="kgs" value="<%=record.kgs%>"/></td>
+            </tr><tr>
+                <td><%=resource.Barcode.label%></td>
+                <td><input type="text" class="form-control" name="barcode" value="<%=record.barcode%>"/></td>
+            </tr><tr>
+                <td><%=resource.Discountcategory.label%></td>
+                <td><input type="text" class="form-control" name="discountcategory" value="<%=record.discountcategory%>"/></td>
+            </tr><tr>
+                <td><%=resource.Taxcatid.label%></td>
+                <td><input type="text" class="form-control" name="taxcatid" value="<%=record.taxcatid%>"/></td>
+            </tr><tr>
+                <td><%=resource.Serialised.label%></td>
+                <td><input type="text" class="form-control" name="serialised" value="<%=record.serialised%>"/></td>
+            </tr><tr>
+                <td><%=resource.Appendfile.label%></td>
+                <td><input type="text" class="form-control" name="appendfile" value="<%=record.appendfile%>"/></td>
+            </tr><tr>
+                <td><%=resource.Perishable.label%></td>
+                <td><input type="text" class="form-control" name="perishable" value="<%=record.perishable%>"/></td>
+            </tr><tr>
+                <td><%=resource.Decimalplaces.label%></td>
+                <td><input type="text" class="form-control" name="decimalplaces" value="<%=record.decimalplaces%>"/></td>
+            </tr><tr>
+                <td><%=resource.Nextserialno.label%></td>
+                <td><input type="text" class="form-control" name="nextserialno" value="<%=record.nextserialno%>"/></td>
+            </tr><tr>
+                <td><%=resource.Pansize.label%></td>
+                <td><input type="text" class="form-control" name="pansize" value="<%=record.pansize%>"/></td>
+            </tr><tr>
+                <td><%=resource.Shrinkfactor.label%></td>
+                <td><input type="text" class="form-control" name="shrinkfactor" value="<%=record.shrinkfactor%>"/></td>
+            </tr>
+        
+        </table>
+        <button type="submit" class="btn btn-default">Update</button>
+        <% if(statusCode == 200) { %>
+        <button type="button" class="btn btn-default""><a href="/<%=session.previouspath%>">Back</a></button>
+        <% }else{ %>
+        <button type="button" class="btn btn-default" onclick="javascript:window.history.back()">Cancel</button>
+        <% } %>
+    </form>
+    </div>
+
+</section>
+</div>
+</div>
+<% include footer %>
+</body>
+</html>

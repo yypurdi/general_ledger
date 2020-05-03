@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<% include head %>
+</head>
+<body>
+<% include side-nav %>
+<div id="main">
+<% include header-nav %>
+<div class="container-fluid">
+<section id="main-content">
+
+<form class="form-horizontal" action="/searchStockMaster" method="get">    
+    <div style="width:50%">
+    <h3><%=resource.Title%></h3>
+        <input type="hidden" class="form-control" name="rowid" value="0"/>    
+        <table class="table table-striped">
+            <tr class="heading-tr">
+                <th><%=resource.Heading%></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td><%=resource.Id.label%></td>    
+                <td><input type="text" class="form-control" name="id"/></td>
+                <td>
+                    <button type="submit" name="action" value="first" class="btn btn-default">Find</button>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <button type="submit" class="btn btn-default"><a href="/newStockMaster">Add</a></button>
+                    <% } %>
+                </td>
+            </tr>
+        </table>    
+    </div>
+    
+    <div style="width:75%">
+        <table class="table table-striped">
+            <tr class="heading-tr">
+                <th><%=resource.StockMaster.Id.header%></th>
+                <th><%=resource.StockMaster.Code.header%></th>
+                <th><%=resource.StockMaster.Units.header%></th>
+                <th><%=resource.StockMaster.Mbflag.header%></th>
+                <th><%=resource.StockMaster.Lastcurcostdate.header%></th>
+                <th><%=resource.StockMaster.Actualcost.header%></th>
+                <th><%=resource.StockMaster.Lastcost.header%></th>
+                <th><%=resource.StockMaster.Materialcost.header%></th>
+                <th><%=resource.StockMaster.Labourcost.header%></th>
+                <th><%=resource.StockMaster.Overheadcost.header%></th>
+                <th><%=resource.StockMaster.Lowestlevel.header%></th>
+                <th><%=resource.StockMaster.Discontinued.header%></th>
+                <th><%=resource.StockMaster.Controlled.header%></th>
+                <th><%=resource.StockMaster.Eoq.header%></th>
+                <th><%=resource.StockMaster.Volume.header%></th>
+                <th><%=resource.StockMaster.Kgs.header%></th>
+                <th><%=resource.StockMaster.Barcode.header%></th>
+                <th><%=resource.StockMaster.Discountcategory.header%></th>
+                <th><%=resource.StockMaster.Taxcatid.header%></th>
+                <th><%=resource.StockMaster.Serialised.header%></th>
+                <th><%=resource.StockMaster.Appendfile.header%></th>
+                <th><%=resource.StockMaster.Perishable.header%></th>
+                <th><%=resource.StockMaster.Decimalplaces.header%></th>
+                <th><%=resource.StockMaster.Nextserialno.header%></th>
+                <th><%=resource.StockMaster.Pansize.header%></th>
+                <th><%=resource.StockMaster.Shrinkfactor.header%></th>
+                
+            	<th>View</th>
+                <% if(session.user_acl=='ROLE_ADMIN') { %>
+                <th>Edit</th>
+                <th>Delete</th>
+                <% } %>
+            </tr>
+            <% for(var i in records){let row = records[i]; %>			            
+            <tr>
+                <td><a><%=row.id%></a></td>
+                <td><a><%=row.code%></a></td>
+                <td><a><%=row.units%></a></td>
+                <td><a><%=row.mbflag%></a></td>
+                <td><a><%=dateFormat(row.lastcurcostdate,'mmm-dd-yyyy')%></a></td>
+                <td><a><%=row.actualcost%></a></td>
+                <td><a><%=row.lastcost%></a></td>
+                <td><a><%=row.materialcost%></a></td>
+                <td><a><%=row.labourcost%></a></td>
+                <td><a><%=row.overheadcost%></a></td>
+                <td><a><%=row.lowestlevel%></a></td>
+                <td><a><%=row.discontinued%></a></td>
+                <td><a><%=row.controlled%></a></td>
+                <td><a><%=row.eoq%></a></td>
+                <td><a><%=row.volume%></a></td>
+                <td><a><%=row.kgs%></a></td>
+                <td><a><%=row.barcode%></a></td>
+                <td><a><%=row.discountcategory%></a></td>
+                <td><a><%=row.taxcatid%></a></td>
+                <td><a><%=row.serialised%></a></td>
+                <td><a><%=row.appendfile%></a></td>
+                <td><a><%=row.perishable%></a></td>
+                <td><a><%=row.decimalplaces%></a></td>
+                <td><a><%=row.nextserialno%></a></td>
+                <td><a><%=row.pansize%></a></td>
+                <td><a><%=row.shrinkfactor%></a></td>
+                
+                <td><a href="/readStockMaster?id=<%=row.id%>"><span class="glyphicon glyphicon-open"></span></a></td>
+                <% if(session.user_acl=='ROLE_ADMIN') { %>
+                <td><a href="/writeStockMaster?id=<%=row.id%>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                <td><a href="/deleteStockMaster?id=<%=row.id%>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                <% } %>
+            </tr>
+            <% } %>            
+        </table>
+        
+        <div class="table-pagination">
+           <ul class="pagination">
+                 <li><button type="submit" name="action" value="first" class="btn btn-default">First</button></li>
+                 <li><button type="submit" name="action" value="previous" class="btn btn-default">Previous</button></li>
+                 <li><button type="submit" name="action" value="next" class="btn btn-default">Next</button></li>
+                 <li><button type="submit" name="action" value="last" class="btn btn-default">Last</button></li>
+           </ul>	        
+        </div>
+    </div>
+</form>                
+
+</section>
+</div>
+</div>
+<% include footer %>
+</body>
+</html>

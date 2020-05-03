@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchProductAccountMapper">			
+	
+	<select id="countProductAccountSearch">
+		select count(*) from product_account
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				and id like #{id}
+			</if>
+			<if test="code!=null">
+				and code like #{code}
+			</if>
+			<if test="name!=null">
+				and name like #{name}
+			</if>
+			<if test="description!=null">
+				and description like #{description}
+			</if>
+			<if test="type!=null">
+				and type like #{type}
+			</if>
+			<if test="accStock!=null">
+				and acc_stock like #{accStock}
+			</if>
+			<if test="accAdjgl!=null">
+				and acc_adjgl like #{accAdjgl}
+			</if>
+			<if test="accPurchase!=null">
+				and acc_purchase like #{accPurchase}
+			</if>
+			<if test="accMaterial!=null">
+				and acc_material like #{accMaterial}
+			</if>
+			<if test="accWip!=null">
+				and acc_wip like #{accWip}
+			</if>
+		</where>		
+	</select>
+
+	<select id="searchProductAccount">
+		select * from product_account  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				id like #{id}
+			</if>
+			<if test="code!=null">
+				code like #{code}
+			</if>
+			<if test="name!=null">
+				name like #{name}
+			</if>
+			<if test="description!=null">
+				description like #{description}
+			</if>
+			<if test="type!=null">
+				type like #{type}
+			</if>
+			<if test="accStock!=null">
+				acc_stock like #{accStock}
+			</if>
+			<if test="accAdjgl!=null">
+				acc_adjgl like #{accAdjgl}
+			</if>
+			<if test="accPurchase!=null">
+				acc_purchase like #{accPurchase}
+			</if>
+			<if test="accMaterial!=null">
+				acc_material like #{accMaterial}
+			</if>
+			<if test="accWip!=null">
+				acc_wip like #{accWip}
+			</if>
+		</where> limit 100 offset ${rowid}
+	</select>
+
+</mapper>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchAccountGroupMapper">			
+	
+	<select id="countAccountGroupSearch">
+		select count(*) from account_group
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				and id like #{id}
+			</if>
+			<if test="name!=null">
+				and name like #{name}
+			</if>
+			<if test="parent!=null">
+				and parent like #{parent}
+			</if>
+			<if test="description!=null">
+				and description like #{description}
+			</if>
+			<if test="accSectionId!=null">
+				and acc_section_id like #{accSectionId}
+			</if>
+		</where>		
+	</select>
+
+	<select id="searchAccountGroup">
+		select * from account_group  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				id like #{id}
+			</if>
+			<if test="name!=null">
+				name like #{name}
+			</if>
+			<if test="parent!=null">
+				parent like #{parent}
+			</if>
+			<if test="description!=null">
+				description like #{description}
+			</if>
+			<if test="accSectionId!=null">
+				acc_section_id like #{accSectionId}
+			</if>
+		</where> limit 100 offset ${rowid}
+	</select>
+
+</mapper>

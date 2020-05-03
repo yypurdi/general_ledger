@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="searchAccountMasterMapper">			
+	
+	<select id="countAccountMasterSearch">
+		select count(*) from account_master
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				and id like #{id}
+			</if>
+			<if test="accCode!=null">
+				and acc_code like #{accCode}
+			</if>
+			<if test="accName!=null">
+				and acc_name like #{accName}
+			</if>
+			<if test="accDescription!=null">
+				and acc_description like #{accDescription}
+			</if>
+			<if test="accGroupId!=null">
+				and acc_group_id like #{accGroupId}
+			</if>
+		</where>		
+	</select>
+
+	<select id="searchAccountMaster">
+		select * from account_master  
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id!=null">
+				id like #{id}
+			</if>
+			<if test="accCode!=null">
+				acc_code like #{accCode}
+			</if>
+			<if test="accName!=null">
+				acc_name like #{accName}
+			</if>
+			<if test="accDescription!=null">
+				acc_description like #{accDescription}
+			</if>
+			<if test="accGroupId!=null">
+				acc_group_id like #{accGroupId}
+			</if>
+		</where> limit 100 offset ${rowid}
+	</select>
+
+</mapper>

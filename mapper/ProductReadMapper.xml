@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="readProductMapper">			
+	
+	<select id="readProduct">
+		select * from product where id = #{id};
+	</select>
+
+	<select id="productAccount_YE4S1">         
+		select * from product_account where id = #{id};
+	</select>
+  
+	<select id="stockMaster_RSDSU">         
+		select * from stock_master where id = #{id};
+	</select>
+  
+</mapper>

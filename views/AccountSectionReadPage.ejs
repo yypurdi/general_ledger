@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<% include head %>
+</head>
+<body>
+<% include side-nav %>
+<div id="main">
+<% include header-nav %>
+<div class="container-fluid">
+<section id="main-content">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h4><%=resource.Heading%></h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="accountGroup-tab" data-toggle="tab" href="#accountGroup" role="tab" aria-controls="accountGroup" aria-selected="true"><h4><%=resource.AccountGroup.Heading%></h4></a>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade in active" id="home" role="tabpanel" aria-labelledby="home-tab">	
+            <div style="width:40%">
+            <form class="form-horizontal">
+                <table class="table table-striped">
+                    <tr class="heading-tr">
+                        <th> <%=resource.Heading%></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><%=resource.Id.label%></td>
+                        <td><%=record.id%></td>						
+                    </tr><tr>
+                        <td><%=resource.Name.label%></td>
+                        <td><%=record.name%></td>						
+                    </tr><tr>
+                        <td><%=resource.Description.label%></td>
+                        <td><%=record.description%></td>						
+                    </tr>
+                
+                </table>
+                <% if(session.user_acl=='ROLE_ADMIN') { %>
+                <button type="submit" class="btn btn-default"><a href="/writeAccountSection?id=<%=record.id%>">Edit</a></button>
+                <button type="submit" class="btn btn-default"><a href="/deleteAccountSection?id=<%=record.id%>">Delete</a></button>
+                <% } %>
+                <button type="button" class="btn btn-default" onclick="javascript:window.history.back()">Back</button>
+            </form>
+            </div>
+        </div>
+        
+	<div class="tab-pane fade" id="accountGroup" role="tabpanel" aria-labelledby="accountGroup-tab">
+            <div style="width:75%">
+            <table class="table table-striped">
+                <tr class="heading-tr">
+                    <th><%=resource.AccountGroup.Id.header%></th>
+                    <th><%=resource.AccountGroup.Name.header%></th>
+                    <th><%=resource.AccountGroup.Parent.header%></th>
+                    <th><%=resource.AccountGroup.Description.header%></th>
+                    <th><%=resource.AccountGroup.AccSectionId.header%></th>
+                                        
+                    <th>View</th>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <% } %>
+                </tr>
+                <% for(let i in record.accountGroup){ let rec = record.accountGroup[i] %>
+                <tr>
+                    <td><a><%=rec.id%></a></td>
+                    <td><a><%=rec.name%></a></td>
+                    <td><a><%=rec.parent%></a></td>
+                    <td><a><%=rec.description%></a></td>
+                    <td><a><%=rec.acc_section_id%></a></td>
+                    
+                    <td><a href="/readAccountGroup?id=<%=rec.id%>"><span class="glyphicon glyphicon-open"></span></a></td>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <td><a href="/writeAccountGroup?id=<%=rec.id%>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a href="/deleteAccountGroup?id=<%=rec.id%>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <% } %>
+                </tr>
+                <% } %>
+            </table>        
+	    <button type="submit" class="btn btn-default"><a href="/newAccountGroup">Add</a></button>
+	    <button type="submit" class="btn btn-default">Clear</button>
+	    </div>	    
+        </div>            
+        
+    </div>
+
+</section>
+</div>
+</div>
+<% include footer %>
+</body>
+</html>

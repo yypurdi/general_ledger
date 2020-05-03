@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="newProductAccountMapper">			
+	
+	<insert id="newProductAccount">
+		insert into product_account(id,code,name,description,type,acc_stock,acc_adjgl,acc_purchase,acc_material,acc_wip) 
+		values (#{id},#{code},#{name},#{description},#{type},#{accStock},#{accAdjgl},#{accPurchase},#{accMaterial},#{accWip});
+	</insert>
+
+</mapper>

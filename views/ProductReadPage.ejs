@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<% include head %>
+</head>
+<body>
+<% include side-nav %>
+<div id="main">
+<% include header-nav %>
+<div class="container-fluid">
+<section id="main-content">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h4><%=resource.Heading%></h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="productAccount-tab" data-toggle="tab" href="#productAccount" role="tab" aria-controls="productAccount" aria-selected="true"><h4><%=resource.ProductAccount.Heading%></h4></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="stockMaster-tab" data-toggle="tab" href="#stockMaster" role="tab" aria-controls="stockMaster" aria-selected="true"><h4><%=resource.StockMaster.Heading%></h4></a>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade in active" id="home" role="tabpanel" aria-labelledby="home-tab">	
+            <div style="width:40%">
+            <form class="form-horizontal">
+                <table class="table table-striped">
+                    <tr class="heading-tr">
+                        <th> <%=resource.Heading%></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><%=resource.Id.label%></td>
+                        <td><%=record.id%></td>						
+                    </tr><tr>
+                        <td><%=resource.Code.label%></td>
+                        <td><%=record.code%></td>						
+                    </tr><tr>
+                        <td><%=resource.Parent.label%></td>
+                        <td><%=record.parent%></td>						
+                    </tr><tr>
+                        <td><%=resource.Name.label%></td>
+                        <td><%=record.name%></td>						
+                    </tr><tr>
+                        <td><%=resource.Description.label%></td>
+                        <td><%=record.description%></td>						
+                    </tr><tr>
+                        <td><%=resource.DiscountCategory.label%></td>
+                        <td><%=record.discount_category%></td>						
+                    </tr><tr>
+                        <td><%=resource.TaxId.label%></td>
+                        <td><%=record.tax_id%></td>						
+                    </tr><tr>
+                        <td><%=resource.Serialised.label%></td>
+                        <td><%=record.serialised%></td>						
+                    </tr>
+                
+                </table>
+                <% if(session.user_acl=='ROLE_ADMIN') { %>
+                <button type="submit" class="btn btn-default"><a href="/writeProduct?id=<%=record.id%>">Edit</a></button>
+                <button type="submit" class="btn btn-default"><a href="/deleteProduct?id=<%=record.id%>">Delete</a></button>
+                <% } %>
+                <button type="button" class="btn btn-default" onclick="javascript:window.history.back()">Back</button>
+            </form>
+            </div>
+        </div>
+        
+	<div class="tab-pane fade" id="productAccount" role="tabpanel" aria-labelledby="productAccount-tab">
+            <div style="width:75%">
+            <table class="table table-striped">
+                <tr class="heading-tr">
+                    <th><%=resource.ProductAccount.Id.header%></th>
+                    <th><%=resource.ProductAccount.Code.header%></th>
+                    <th><%=resource.ProductAccount.Name.header%></th>
+                    <th><%=resource.ProductAccount.Description.header%></th>
+                    <th><%=resource.ProductAccount.Type.header%></th>
+                    <th><%=resource.ProductAccount.AccStock.header%></th>
+                    <th><%=resource.ProductAccount.AccAdjgl.header%></th>
+                    <th><%=resource.ProductAccount.AccPurchase.header%></th>
+                    <th><%=resource.ProductAccount.AccMaterial.header%></th>
+                    <th><%=resource.ProductAccount.AccWip.header%></th>
+                                        
+                    <th>View</th>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <% } %>
+                </tr>
+                <% for(let i in record.productAccount){ let rec = record.productAccount[i] %>
+                <tr>
+                    <td><a><%=rec.id%></a></td>
+                    <td><a><%=rec.code%></a></td>
+                    <td><a><%=rec.name%></a></td>
+                    <td><a><%=rec.description%></a></td>
+                    <td><a><%=rec.type%></a></td>
+                    <td><a><%=rec.acc_stock%></a></td>
+                    <td><a><%=rec.acc_adjgl%></a></td>
+                    <td><a><%=rec.acc_purchase%></a></td>
+                    <td><a><%=rec.acc_material%></a></td>
+                    <td><a><%=rec.acc_wip%></a></td>
+                    
+                    <td><a href="/readProductAccount?id=<%=rec.id%>"><span class="glyphicon glyphicon-open"></span></a></td>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <td><a href="/writeProductAccount?id=<%=rec.id%>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a href="/deleteProductAccount?id=<%=rec.id%>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <% } %>
+                </tr>
+                <% } %>
+            </table>        
+	    <button type="submit" class="btn btn-default"><a href="/newProductAccount">Add</a></button>
+	    <button type="submit" class="btn btn-default">Clear</button>
+	    </div>	    
+        </div>            
+        
+	<div class="tab-pane fade" id="stockMaster" role="tabpanel" aria-labelledby="stockMaster-tab">
+            <div style="width:75%">
+            <table class="table table-striped">
+                <tr class="heading-tr">
+                    <th><%=resource.StockMaster.Id.header%></th>
+                    <th><%=resource.StockMaster.Code.header%></th>
+                    <th><%=resource.StockMaster.Units.header%></th>
+                    <th><%=resource.StockMaster.Mbflag.header%></th>
+                    <th><%=resource.StockMaster.Lastcurcostdate.header%></th>
+                    <th><%=resource.StockMaster.Actualcost.header%></th>
+                    <th><%=resource.StockMaster.Lastcost.header%></th>
+                    <th><%=resource.StockMaster.Materialcost.header%></th>
+                    <th><%=resource.StockMaster.Labourcost.header%></th>
+                    <th><%=resource.StockMaster.Overheadcost.header%></th>
+                    <th><%=resource.StockMaster.Lowestlevel.header%></th>
+                    <th><%=resource.StockMaster.Discontinued.header%></th>
+                    <th><%=resource.StockMaster.Controlled.header%></th>
+                    <th><%=resource.StockMaster.Eoq.header%></th>
+                    <th><%=resource.StockMaster.Volume.header%></th>
+                    <th><%=resource.StockMaster.Kgs.header%></th>
+                    <th><%=resource.StockMaster.Barcode.header%></th>
+                    <th><%=resource.StockMaster.Discountcategory.header%></th>
+                    <th><%=resource.StockMaster.Taxcatid.header%></th>
+                    <th><%=resource.StockMaster.Serialised.header%></th>
+                    <th><%=resource.StockMaster.Appendfile.header%></th>
+                    <th><%=resource.StockMaster.Perishable.header%></th>
+                    <th><%=resource.StockMaster.Decimalplaces.header%></th>
+                    <th><%=resource.StockMaster.Nextserialno.header%></th>
+                    <th><%=resource.StockMaster.Pansize.header%></th>
+                    <th><%=resource.StockMaster.Shrinkfactor.header%></th>
+                                        
+                    <th>View</th>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <% } %>
+                </tr>
+                <% for(let i in record.stockMaster){ let rec = record.stockMaster[i] %>
+                <tr>
+                    <td><a><%=rec.id%></a></td>
+                    <td><a><%=rec.code%></a></td>
+                    <td><a><%=rec.units%></a></td>
+                    <td><a><%=rec.mbflag%></a></td>
+                    <td><a><%=dateFormat(rec.lastcurcostdate,'mmm-dd-yyyy h:MM:ss TT')%></a></td>
+                    <td><a><%=rec.actualcost%></a></td>
+                    <td><a><%=rec.lastcost%></a></td>
+                    <td><a><%=rec.materialcost%></a></td>
+                    <td><a><%=rec.labourcost%></a></td>
+                    <td><a><%=rec.overheadcost%></a></td>
+                    <td><a><%=rec.lowestlevel%></a></td>
+                    <td><a><%=rec.discontinued%></a></td>
+                    <td><a><%=rec.controlled%></a></td>
+                    <td><a><%=rec.eoq%></a></td>
+                    <td><a><%=rec.volume%></a></td>
+                    <td><a><%=rec.kgs%></a></td>
+                    <td><a><%=rec.barcode%></a></td>
+                    <td><a><%=rec.discountcategory%></a></td>
+                    <td><a><%=rec.taxcatid%></a></td>
+                    <td><a><%=rec.serialised%></a></td>
+                    <td><a><%=rec.appendfile%></a></td>
+                    <td><a><%=rec.perishable%></a></td>
+                    <td><a><%=rec.decimalplaces%></a></td>
+                    <td><a><%=rec.nextserialno%></a></td>
+                    <td><a><%=rec.pansize%></a></td>
+                    <td><a><%=rec.shrinkfactor%></a></td>
+                    
+                    <td><a href="/readStockMaster?id=<%=rec.id%>"><span class="glyphicon glyphicon-open"></span></a></td>
+                    <% if(session.user_acl=='ROLE_ADMIN') { %>
+                    <td><a href="/writeStockMaster?id=<%=rec.id%>"><span class="glyphicon glyphicon-edit"></span></a></td>
+                    <td><a href="/deleteStockMaster?id=<%=rec.id%>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <% } %>
+                </tr>
+                <% } %>
+            </table>        
+	    <button type="submit" class="btn btn-default"><a href="/newStockMaster">Add</a></button>
+	    <button type="submit" class="btn btn-default">Clear</button>
+	    </div>	    
+        </div>            
+        
+    </div>
+
+</section>
+</div>
+</div>
+<% include footer %>
+</body>
+</html>
