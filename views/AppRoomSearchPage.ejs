@@ -44,7 +44,7 @@
                 <th><%=resource.AppRoom.Status.header%></th>
                 <th><%=resource.AppRoom.RefValue.header%></th>
                 
-            	<th>View</th>
+            	<th>Join</th>
                 <% if(session.user_acl=='ROLE_ADMIN') { %>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -55,8 +55,8 @@
                 <td><a><%=row.meeting_room%></a></td>
                 <td><a><%=row.subject%></a></td>
                 <td><a><%=row.participant%></a></td>
-                <td><a><%=dateFormat(row.start_date,'mmm-dd-yyyy')%></a></td>
-                <td><a><%=dateFormat(row.end_date,'mmm-dd-yyyy')%></a></td>
+                <td><a><%=dateFormat(row.start_date,'mmm-dd-yyyy h:MM:ss TT')%></a></td>
+                <td><a><%=dateFormat(row.end_date,'mmm-dd-yyyy h:MM:ss TT')%></a></td>
                 <td><a><%=row.status%></a></td>
                 <td><a><%=row.ref_value%></a></td>
                 
